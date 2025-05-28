@@ -1,5 +1,17 @@
-html {
-    scroll-behavior: smooth;
+/* Root Variables */
+:root {
+    --primary-color: #2C5282;
+    --secondary-color: #4299E1;
+    --accent-color: #48BB78;
+    --text-color: #2D3748;
+    --light-text: #718096;
+    --background-color: #F7FAFC;
+    --white: #FFFFFF;
+    --error-color: #E53E3E;
+    --success-color: #48BB78;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
 
 /* General Styles */
@@ -7,6 +19,10 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -82,23 +98,7 @@ header nav ul.nav-links li a:hover {
     color: #ffdd57;
 }
 
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-}
-
-.hamburger span {
-    height: 3px;
-    width: 25px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Hero Section Styles */
+/* Hero Section */
 .hero {
     position: relative;
     padding: 300px 20px;
@@ -109,7 +109,7 @@ header nav ul.nav-links li a:hover {
 }
 
 .hero .image-container {
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -117,9 +117,8 @@ header nav ul.nav-links li a:hover {
     background-image: url('images/hospital.png');
     background-size: cover;
     background-position: center;
-    filter: blur(3px); 
-    z-index: -1; 
-    
+    filter: blur(3px);
+    z-index: -1;
 }
 
 .hero .container {
@@ -131,8 +130,8 @@ header nav ul.nav-links li a:hover {
 
 .hero-content {
     max-width: 800px;
-    position: relative; 
-    z-index: 1; 
+    position: relative;
+    z-index: 1;
     opacity: 0;
     animation: fadeInUp 1s forwards;
     animation-delay: 0.3s;
@@ -153,6 +152,7 @@ header nav ul.nav-links li a:hover {
 }
 
 .button {
+    isolation: isolate;
     display: inline-block;
     padding: 15px 30px;
     text-decoration: none;
@@ -173,6 +173,252 @@ header nav ul.nav-links li a:hover {
     box-shadow: 0 8px 16px rgba(0, 86, 179, 0.8);
 }
 
+/* Doctors Section */
+.doctors {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.doctors h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    color: #2C5282;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.doctors h2:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #48BB78;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+.doctor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 20px;
+}
+
+.doctor-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: visible;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    height: 420px;
+}
+
+.doctor-card:hover {
+    transform: translateY(-15px) scale(1.1);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.doctor-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.doctor-info {
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+}
+
+.doctor-info h3 {
+    color: #2C5282;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+}
+
+.doctor-info p {
+    color: #718096;
+    font-size: 1.1em;
+}
+
+.doctor-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 82, 130, 0.98);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    transform: translateY(10px);
+    min-height: 100%;
+    border-radius: 8px;
+}
+
+.doctor-hover h3 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+}
+
+.doctor-hover p {
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: center;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease 0.2s;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+}
+
+.doctor-hover p::-webkit-scrollbar {
+    width: 6px;
+}
+
+.doctor-hover p::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.doctor-hover p::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+}
+
+.doctor-card:hover .doctor-hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.doctor-card:hover .doctor-hover h3,
+.doctor-card:hover .doctor-hover p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.doctor-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px rgba(44, 82, 130, 0);
+    transition: all 0.3s ease;
+}
+
+.doctor-card:hover::after {
+    box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.3);
+}
+
+/* Contact Section */
+.contact {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.contact form input,
+.contact form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-info {
+    margin-top: 40px;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+/* Footer */
+footer {
+    isolation: isolate;
+    background: linear-gradient(90deg, #0077ff 0%, #0056b3 100%);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header nav ul.nav-links {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        display: none;
+    }
+
+    header nav ul.nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        padding: 80px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .doctor-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -184,566 +430,3 @@ header nav ul.nav-links li a:hover {
         transform: translateY(0);
     }
 }
-
-/* Doctors Section */
-.doctors {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.doctors h2 {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 30px;
-    color: #222;
-}
-
-.doctor-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
-}
-
-.doctor-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: white;
-}
-
-.doctor-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-}
-
-.doctor-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-}
-
-.doctor-card:hover img {
-    transform: scale(1.1);
-}
-
-/* Overlay text */
-.doctor-hover {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: center;
-}
-
-.doctor-card:hover .doctor-hover {
-    opacity: 1;
-}
-
-.doctor-info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    transition: transform 0.3s ease;
-    transform: translateY(100%);
-}
-
-.doctor-card:hover .doctor-info {
-    transform: translateY(0);
-}
-
-/* Contact Section */
-.contact {
-    padding: 60px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.contact h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-    color: #222;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.contact form label {
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    display: block;
-    color: #333;
-}
-
-.contact form input, .contact form textarea {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 8px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact form input:focus, .contact form textarea:focus {
-    border-color: #0077ff;
-    box-shadow: 0 0 8px rgba(0, 119, 255, 0.5);
-    outline: none;
-}
-
-.contact form button {
-    padding: 12px 25px;
-    background: linear-gradient(90deg, #0077ff 0%, #0056b3 100%);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact form button:hover {
-    background: linear-gradient(90deg, #0056b3 0%, #003d7a 100%);
-    box-shadow: 0 8px 16px rgba(0, 86, 179, 0.8);
-}
-
-.contact-info {
-    margin-top: 40px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    color: #555;
-    font-size: 1.1em;
-    text-align: left;
-}
-
-.contact-info p {
-    margin: 5px 0;
-}
-
-/* Footer Styles */
-footer {
-    background: linear-gradient(90deg, #0077ff 0%, #0056b3 100%);
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 0.9em;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
-    isolation: isolate;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    header .container {
-        flex-wrap: wrap;
-    }
-
-    header nav ul.nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #0056b3;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 10px 0;
-        border-radius: 0 0 8px 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    header nav ul.nav-links.active {
-        display: flex;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
-}
-
-header .logo img {
-    width: 75px; 
-    height: auto;
-    margin-right: 20px;
-}
-
-header .logo h1 {
-    font-size: 2em;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-}
-
-header nav ul li {
-    margin-left: 20px;
-}
-
-header nav ul li a {
-    color: #555;
-    text-decoration: none;
-    font-size: 1.1em;
-    transition: color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    color: #007bff;
-}
-
-/* Hero Section Styles */
-.hero {
-    position: relative;
-    padding: 300px 20px;
-    color: rgb(255, 255, 255);
-    text-align: center;
-}
-
-.hero .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.hero-content {
-    max-width: 800px;
-    position: relative; 
-    z-index: 1; 
-}
-
-.hero-content h1 {
-    font-size: 3em;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 20px;
-}
-
-.hero-content p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    line-height: 1.8;
-}
-
-
-.button {
-    display: inline-block;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-}
-
-.button.primary {
-    background-color: #0077ff;
-    color: white;
-}
-
-.button.primary:hover {
-    background-color: #0056b3;
-}
-
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 0.9em;
-}
-
-/* Contact Section */
-.contact {
-    padding: 60px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.contact h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.contact form .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.contact form label {
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    display: block;
-    color: #333;
-}
-
-.contact form input, .contact form textarea {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 8px;
-    box-sizing: border-box;
-}
-
-.contact form textarea {
-    resize: vertical;
-    min-height: 150px;
-}
-
-.contact form button {
-    padding: 12px 25px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    isolation: isolate;
-}
-
-.contact form button:hover {
-    background-color: #0056b3;
-}
-
-.contact-info {
-    margin-top: 40px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.contact-info h3 {
-    font-size: 2em;
-    margin-bottom: 15px;
-}
-
-.contact-info p {
-    font-size: 1.1em;
-    color: #555;
-    margin: 5px 0;
-}
-
-/* Doctors Section */
-.doctors {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.doctors h2 {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 30px;
-}
-
-.doctor-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
-}
-
-.doctor-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.doctor-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.doctor-card:hover img {
-    transform: scale(1.1);
-}
-
-/* Ortada beliren bilgi kısmı */
-.doctor-hover {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Opaklık daha da azaltıldı */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.doctor-card:hover .doctor-hover {
-    opacity: 1; /* Hover ile görünür hale gelir */
-}
-
-/* Alttan kayarak çıkan bilgi kısmı */
-.doctor-info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Opaklık artırıldı */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    transition: transform 0.3s ease;
-    transform: translateY(100%);
-}
-
-.doctor-card:hover .doctor-info {
-    transform: translateY(0); /* Hover ile görünür hale gelir */
-}
-
-.doctor-title {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1em;
-    text-align: left;
-}
-
-.doctor-card:hover .doctor-title {
-    background: rgba(0, 0, 0, 1); /* Hover sırasında daha koyu arka plan */
-}
-
-.nav-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff; /* Match original theme color */
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  margin: 5px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.nav-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
-/* Admin Login Button Specific Style */
-.admin-login-btn {
-  background-color: #17a2b8; /* Match "info" theme color */
-}
-
-.admin-login-btn:hover {
-  background-color: #117a8b;
-}
-
-/* Home Button on Admin Login */
-.home-btn-login {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 8px 16px;
-  background-color: #28a745; /* Match "success" theme color */
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: bold;
-  border-radius: 4px;
-}
-
-.home-btn-login:hover {
-  background-color: #218838;
-}
-
-/* Login Modal Improvements */
-#loginModal {
-  background-color: rgba(255, 255, 255, 0.95); /* Subtle white overlay */
-}
-
-#loginForm {
-  padding: 20px;
-  border-radius: 6px;
-  background-color: #f8f9fa; /* Light gray background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#loginForm h2 {
-  font-size: 1.6rem;
-  color: #343a40; /* Dark theme color */
-}
-
-#loginForm input {
-  border: 1px solid #ced4da;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-#loginForm button {
-  background-color: #007bff; /* Primary theme color */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-}
-
-#loginForm button:hover {
-  background-color: #0056b3;
-}
-
