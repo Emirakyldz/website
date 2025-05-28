@@ -6,8 +6,10 @@
 <title>Admin Panel</title>
 <style>
 body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	margin: 32px;
 	background-color: #f9fafd;
 	color: #333;
 }
@@ -186,26 +188,189 @@ tbody tr td[colspan] {
 		content: "Time";
 	}
 }
+
+.login-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	background: linear-gradient(135deg, rgba(66, 147, 233, 0.9), rgba(52, 219, 216, 0.9));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blur(10px);
+	min-height: 100vh;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.login-container {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 2.5rem 3rem;
+	border-radius: 20px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+	width: 100%;
+	max-width: 400px;
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	transform: translateY(0);
+	transition: transform 0.3s ease;
+}
+
+.login-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	background: linear-gradient(to right, #4293e9, #34dbd8);
+}
+
+.login-header {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.login-title {
+	color: #1a365d;
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0;
+	letter-spacing: -0.5px;
+}
+
+.login-subtitle {
+	color: #64748b;
+	font-size: 0.95rem;
+	margin-top: 0.5 rem;
+}
+
+.form-group {
+	margin-bottom: 1.5rem;
+	position: relative;
+}
+
+.form-group label {
+	display: block;
+	color: #475569;
+	font-size: 0.9rem;
+	font-weight: 500;
+	margin-bottom: 0.75rem;
+	padding-left: px;
+}
+
+.form-control {
+	width: 83%;
+	height: 3.25rem;
+	padding: 0 1rem 0 3rem;
+	background: #f8fafc;
+	border: 3px solid #e2e8f0;
+	border-radius: 12px;
+	font-size: 0.95rem;
+	color: #1e293b;
+	transition: all 0.3s ease;
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: #4293e9;
+	background: #fff;
+	box-shadow: 0 0 0 4px rgba(66, 147, 233, 0.1);
+}
+
+.form-icon {
+	position: absolute;
+	left: 1rem;
+	top: 3rem;
+	width: 20px;
+	height: 20px;
+	color: #94a3b8;
+	transition: all 0.3s ease;
+	pointer-events: none;
+}
+
+.form-group:focus-within .form-icon {
+	color: #4293e9;
+}
+
+.login-btn {
+	width: 100%;
+	padding: 1rem;
+	background: linear-gradient(135deg, #4293e9, #34dbd8);
+	color: #fff;
+	border: none;
+	border-radius: 12px;
+	font-weight: 600;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-top: 1rem;
+}
+
+.login-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 20px rgba(66, 147, 233, 0.2);
+}
+
+.login-btn:active {
+	transform: translateY(0);
+}
+
+.login-error {
+	background: #fee2e2;
+	color: #dc2626;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	font-size: 0.9rem;
+	margin-top: 1rem;
+	display: none;
+	text-align: center;
+	animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-5px); }
+	75% { transform: translateX(5px); }
+}
+
+.form-control::placeholder {
+	color: #94a3b8;
+	opacity: 0.8;
+}
 </style>
 </head>
 <body>
     
-      <div id="loginModal" style="display:none;position:fixed;z-index:1000;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.98);align-items:center;justify-content:center;">
-    <form id="loginForm" style="background:#fff;padding:32px 28px 24px 28px;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.10);min-width:320px;">
-      <h2 style="margin-top:0;text-align:center;color:#2980b9;">Admin Login</h2>
-      <div style="margin-bottom:16px;">
-        <label>Username</label>
-          <a href="index.html" class="home-btn">Home</a>
-        <input type="text" id="adminUser" required style="width:100%;padding:8px;margin-top:4px;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label>Password</label>
-        <input type="password" id="adminPass" required style="width:100%;padding:8px;margin-top:4px;">
-      </div>
-      <button type="submit" style="width:100%;padding:10px;background:#2980b9;color:#fff;border:none;border-radius:5px;font-weight:600;font-size:1rem;">Login</button>
-      <div id="loginError" style="color:#c0392b;text-align:center;margin-top:12px;display:none;">Invalid Credentials</div>
-    </form>
-  </div>
+      <div id="loginModal" class="login-modal" style="display: none;">
+    <div class="login-container">
+        <div class="login-header">
+            <h2 class="login-title">Welcome Back</h2>
+            <p class="login-subtitle">Please sign in to continue</p>
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="adminUser">Username</label>
+                <svg class="form-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.6667 17.5V15.8333C16.6667 14.9493 16.3155 14.1014 15.6904 13.4763C15.0653 12.8512 14.2174 12.5 13.3333 12.5H6.66668C5.78262 12.5 4.93478 12.8512 4.30965 13.4763C3.68453 14.1014 3.33334 14.9493 3.33334 15.8333V17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 9.16667C11.841 9.16667 13.3333 7.67428 13.3333 5.83333C13.3333 3.99238 11.841 2.5 10 2.5C8.15906 2.5 6.66667 3.99238 6.66667 5.83333C6.66667 7.67428 8.15906 9.16667 10 9.16667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" id="adminUser" class="form-control" required placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="adminPass">Password</label>
+                <svg class="form-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.8333 9.16667H4.16667C3.24619 9.16667 2.5 9.91286 2.5 10.8333V16.6667C2.5 17.5871 3.24619 18.3333 4.16667 18.3333H15.8333C16.7538 18.3333 17.5 17.5871 17.5 16.6667V10.8333C17.5 9.91286 16.7538 9.16667 15.8333 9.16667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5.83334 9.16667V5.83333C5.83334 4.72827 6.27233 3.66846 7.05373 2.88706C7.83513 2.10566 8.89494 1.66667 10 1.66667C11.1051 1.66667 12.1649 2.10566 12.9463 2.88706C13.7277 3.66846 14.1667 4.72827 14.1667 5.83333V9.16667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="password" id="adminPass" class="form-control" required placeholder="Enter your password">
+            </div>
+            <button type="submit" class="login-btn">Sign In</button>
+            <div id="loginError" class="login-error">Invalid credentials. Please try again.</div>
+        </form>
+    </div>
+</div>
   
   <h1>Admin Panel</h1>
   <button id="logoutBtn" style="display:none;position:absolute;top:32px;right:32px;z-index:1001;padding:10px 24px;background:#c0392b;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;">Logout</button>
@@ -450,25 +615,5 @@ document.addEventListener('click', function(e) {
   }
 });
   </script>
-
-   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-  <script>
-const options = {
-  bottom: '32px', // default: '32px'
-  right: '32px', // default: '32px'
-  left: 'unset', // default: 'unset'
-  time: '0.5s', // default: '0.3s'
-  mixColor: '#fff', // default: '#fff'
-  backgroundColor: '#fff',  // default: '#fff'
-  buttonColorDark: '#100f2c',  // default: '#100f2c'
-  buttonColorLight: '#fff', // default: '#fff'
-  saveInCookies: false, // default: true,
-  label: '🌓', // default: ''
-  autoMatchOsTheme: true // default: true
-}
-
-const darkmode = new Darkmode(options);
-darkmode.showWidget();
-</script>
 </body>
 </html>
