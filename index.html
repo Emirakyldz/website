@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Appointment System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/hospital-logo.png" alt="Hospital Logo" class="logo-img">
+                <h1>ProjectHospital</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#doctors">Our Doctors</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="admin.html">Admin Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id = 'home' class="hero">
+        <div class="image-container"> </div> 
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Health is Our Priority</h1>
+                <p>We provide the best healthcare services with our expert doctors.</p>
+                <a href="appointment.html" class="button primary">Make an Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Doctors Section (yeni ekleme) -->
+    <section id="doctors" class="doctors">
+        <div class="container">
+            <h2>Our Doctors</h2>
+            <div class="doctor-cards">
+                <!-- Doctor 1 -->
+                <div class="doctor-card">
+                    <img src="images/doctor2.png" alt="Dr. Sarah Johnson">
+                    <div class="doctor-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p>Cardiologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p>Expert in heart-related diseases, with over 10 years of experience.</p>
+                    </div>
+                </div>
+                <!-- Doctor 2 -->
+                <div class="doctor-card">
+                    <img src="images/doctor1.png" alt="Dr. Michael Brown">
+                    <div class="doctor-info">
+                        <h3>Dr. Michael Brown</h3>
+                        <p>Neurologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Michael Brown</h3>
+                        <p>Specialist in neurology, focusing on brain and spinal cord disorders.</p>
+                    </div>
+                </div>
+                <!-- Doctor 3 -->
+                <div class="doctor-card">
+                    <img src="images/doctor3.png" alt="Dr. Emily Davis">
+                    <div class="doctor-info">
+                        <h3>Dr. Emily Davis</h3>
+                        <p>Dermatologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Emily Davis</h3>
+                        <p>Skilled in treating skin conditions and cosmetic dermatology.</p>
+                    </div>
+                </div>
+                <!-- Doctor 4 -->
+                <div class="doctor-card">
+                    <img src="images/doctor8.png" alt="Dr. James Wilson">
+                    <div class="doctor-info">
+                        <h3>Dr. James Wilson</h3>
+                        <p>Pediatrician</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. James Wilson</h3>
+                        <p>Provides medical care for infants, children, and teenagers.</p>
+                    </div>
+                </div>
+                <!-- Doctor 5 -->
+                <div class="doctor-card">
+                    <img src="images/doctor4.png" alt="Dr. Olivia Martinez">
+                    <div class="doctor-info">
+                        <h3>Dr. Olivia Martinez</h3>
+                        <p>Oncologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Olivia Martinez</h3>
+                        <p>Specialized in cancer treatment and patient care.</p>
+                    </div>
+                </div>
+                <!-- Doctor 6 -->
+                <div class="doctor-card">
+                    <img src="images/doctor9.png" alt="Dr. Daniel Lee">
+                    <div class="doctor-info">
+                        <h3>Dr. Daniel Lee</h3>
+                        <p>Orthopedic Surgeon</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Daniel Lee</h3>
+                        <p>Expert in bone and joint surgeries with innovative approaches.</p>
+                    </div>
+                </div>
+                <!-- Doctor 7 -->
+                <div class="doctor-card">
+                    <img src="images/doctor5.png" alt="Dr. Ava Taylor">
+                    <div class="doctor-info">
+                        <h3>Dr. Ava Taylor</h3>
+                        <p>Psychiatrist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Ava Taylor</h3>
+                        <p>Focused on mental health and emotional well-being.</p>
+                    </div>
+                </div>
+                <!-- Doctor 8 -->
+                <div class="doctor-card">
+                    <img src="images/doctor10.png" alt="Dr. Gregory House">
+                    <div class="doctor-info">
+                        <h3>Dr. Gregory House</h3>
+                        <p>General Surgeon</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Gregory House</h3>
+                        <p>Performs surgeries across a range of medical specialties.</p>
+                    </div>
+                </div>
+                <!-- Doctor 9 -->
+                <div class="doctor-card">
+                    <img src="images/doctor6.png" alt="Dr. Sophia Clark">
+                    <div class="doctor-info">
+                        <h3>Dr. Sophia Clark</h3>
+                        <p>Endocrinologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Sophia Clark</h3>
+                        <p>Specializes in hormonal and metabolic disorders.</p>
+                    </div>
+                </div>
+                <!-- Doctor 10 -->
+                <div class="doctor-card">
+                    <img src="images/doctor11.png" alt="Dr. Benjamin Wright">
+                    <div class="doctor-info">
+                        <h3>Dr. Benjamin Wright</h3>
+                        <p>Radiologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Benjamin Wright</h3>
+                        <p>Expert in diagnostic imaging techniques like MRI and CT scans.</p>
+                    </div>
+                </div>
+                <!-- Doctor 11 -->
+                <div class="doctor-card">
+                    <img src="images/doctor7.png" alt="Dr. Mia Scott">
+                    <div class="doctor-info">
+                        <h3>Dr. Mia Scott</h3>
+                        <p>Gynecologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Mia Scott</h3>
+                        <p>Provides care for women's health, pregnancy, and childbirth.</p>
+                    </div>
+                </div>
+                <!-- Doctor 12 -->
+                <div class="doctor-card">
+                    <img src="images/doctor12.png" alt="Dr. Ethan Moore">
+                    <div class="doctor-info">
+                        <h3>Dr. Ethan Moore</h3>
+                        <p>Urologist</p>
+                    </div>
+                    <div class="doctor-hover">
+                        <h3>Dr. Ethan Moore</h3>
+                        <p>Specialist in urinary tract and male reproductive system health.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="#" method="POST" id="contact-form">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" required></textarea>
+    
+                <button type="submit" class="button primary">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> +48 111 111 111</p>
+                <p><strong>Email:</strong> contact@wsbprojecthospital.com</p>
+                <p><strong>Address:</strong> WSB University Poznan, Poland</p>
+            </div>
+        </div>
+    </section>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ProjectHospital | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+   
+   <style>
+    .darkmode-toggle {
+        z-index: 9999;
+        position: fixed;
+    }
+</style>
+  <script>
+const options = {
+  bottom: '32px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Make an Appointment</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+</head>
+<body
+  class="bg-gradient-to-r from-indigo-100 via-white to-indigo-100 min-h-screen flex items-center justify-center"
+>
+  <div class="absolute top-4 left-4">
+    <a
+      href="index.html"
+      class="inline-flex items-center bg-indigo-600 text-white py-3 px-6 rounded-md shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg font-semibold transition transform hover:scale-110"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 mr-2"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0H7a2 2 0 00-2 2v7h14v-7a2 2 0 00-2-2h-3z"
+        />
+      </svg>
+      Home
+    </a>
+  </div>
+  <div
+    class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-lg border border-indigo-200"
+  >
+    <h1
+      class="text-4xl font-extrabold text-center text-indigo-900 mb-8 tracking-wide"
+    >
+      Book an Appointment
+    </h1>
+    <form id="appointmentForm" action="" method="post" class="space-y-6">
+      <!-- Patient Name -->
+      <div>
+        <label
+          for="patientName"
+          class="block text-lg font-semibold text-indigo-800"
+          >Patient Name</label
+        >
+        <div class="relative mt-2">
+          <input
+            type="text"
+            id="patientName"
+            name="patientName"
+            placeholder="Enter your name"
+            required
+            class="block w-full rounded-md border border-indigo-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 py-3 px-4 text-lg transition duration-300 ease-in-out"
+          />
+          <div
+            class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-indigo-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- PESEL -->
+      <div>
+        <label
+          for="pesel"
+          class="block text-lg font-semibold text-indigo-800"
+          >PESEL</label
+        >
+        <div class="relative mt-2">
+          <input
+            type="text"
+            id="pesel"
+            name="pesel"
+            placeholder="Enter your PESEL"
+            required
+            maxlength="11"
+            class="block w-full rounded-md border border-indigo-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 py-3 px-4 text-lg transition duration-300 ease-in-out"
+          />
+          <div
+            class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-indigo-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 11c0-1.105-.895-2-2-2s-2 .895-2 2 .895 2 2 2 2-.895 2-2zM12 11v2m0 4h.01M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"
+              />
+            </svg>
+          </div>
+        </div>
+        <p id="peselError" class="text-red-500 text-sm mt-1 hidden">
+          PESEL must be 11 digits long.
+        </p>
+      </div>
+
+      <!-- Specialty Selection -->
+      <div>
+        <label
+          for="specialty"
+          class="block text-lg font-semibold text-indigo-800"
+          >Select Specialty</label
+        >
+        <select
+          id="specialty"
+          name="specialty"
+          required
+          class="mt-2 block w-full rounded-md border border-indigo-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 py-3 px-4 text-lg transition duration-300 ease-in-out"
+        >
+          <option value="">Choose a specialty</option>
+          <option value="Cardiologist">Cardiologist</option>
+          <option value="Neurologist">Neurologist</option>
+          <option value="Dermatologist">Dermatologist</option>
+          <option value="Pediatrician">Pediatrician</option>
+          <option value="Oncologist">Oncologist</option>
+          <option value="Orthopedic_Surgeon">Orthopedic Surgeon</option>
+          <option value="Psychiatrist">Psychiatrist</option>
+          <option value="General_Surgeon">General Surgeon</option>
+          <option value="Endocrinologist">Endocrinologist</option>
+          <option value="Radiologist">Radiologist</option>
+          <option value="Gynecologist">Gynecologist</option>
+          <option value="Urologist">Urologist</option>
+        </select>
+      </div>
+
+      <!-- Doctor Selection -->
+      <div>
+        <label
+          for="doctor"
+          class="block text-lg font-semibold text-indigo-800"
+          >Select Doctor</label
+        >
+        <select
+          id="doctor"
+          name="doctor"
+          class="mt-2 block w-full rounded-md border border-indigo-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 py-3 px-4 text-lg transition duration-300 ease-in-out"
+
+        >
+          <option value="">Choose a doctor</option>
+        </select>
+      </div>
+
+      <!-- Date Selection -->
+      <div>
+        <label
+          for="date"
+          class="block text-lg font-semibold text-indigo-800"
+          >Select Date</label
+        >
+        <div class="relative mt-2">
+          <input
+            type="date"
+            id="date"
+            name="date"
+            class="block w-full rounded-md border border-indigo-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 py-3 px-4 text-lg transition duration-300 ease-in-out"
+          />
+          <div
+            class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-indigo-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time Selection -->
+      <div>
+        <label
+          for="time"
+          class="block text-lg font-semibold text-indigo-800"
+          >Select Time</label
+        >
+        <select
+          id="time"
+          name="time"
+          class="mt-2 block w-full rounded-md border border-indigo-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 py-3 px-4 text-lg transition duration-300 ease-in-out"          
+        >
+          <option value="">Choose a time</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button
+          id="confirmButton"
+          type="submit"
+          class="w-full bg-indigo-600 text-white py-3 px-6 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 text-lg font-semibold shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Confirm Appointment
+        </button>
+      </div>
+    </form>
+
+    <!-- Confirmation Message -->
+    <div
+      id="confirmationMessage"
+      class="mt-6 hidden bg-gradient-to-r from-green-200 via-green-100 to-green-200 text-green-900 p-5 rounded-xl shadow-md border border-green-300 font-semibold text-center text-lg animate-pulse"
+    >
+      Appointment confirmed! Your appointment number is:
+      <span id="appointmentNumber" class="font-extrabold text-xl"></span>
+    </div>
+  </div>
+
+  <script>
+    const peselInput = document.getElementById("pesel");
+    const peselError = document.getElementById("peselError");
+    const form = document.getElementById("appointmentForm");
+
+    peselInput.addEventListener("input", () => {
+      // Remove non-digit characters
+      peselInput.value = peselInput.value.replace(/\D/g, "");
+
+      // Validate PESEL length
+      const pesel = peselInput.value.trim();
+      if (pesel.length !== 11) {
+        peselError.classList.remove("hidden");
+    } else {
+    peselError.classList.add("hidden");
+  }
+});
+
+// Sample doctor list by specialty 
+const doctorsBySpecialty = {
+                    Cardiologist: ['Dr. Sarah Johnson'],
+                    Neurologist: ['Dr. Michael Brown'],
+                    Dermatologist: ['Dr. Emily Davis'],
+                    Pediatrician: ['Dr. James Wilson'],
+                    Oncologist: ['Dr. Olivia Martinez'],
+                    Orthopedic_Surgeon: ['Dr. Daniel Lee'],
+                    Psychiatrist: ['Dr. Ava Taylor'],
+                    General_Surgeon: ['Dr. Gregory House'],
+                    Endocrinologist: ['Dr. Sophia Clark'],
+                    Radiologist: ['Dr. Benjamin Wright'],
+                    Gynecologist: ['Dr. Mia Scott'],
+                    Urologist: ['Dr. Ethan Moore']
+};
+
+const specialtySelect = document.getElementById("specialty");
+const doctorSelect = document.getElementById("doctor");
+const dateInput = document.getElementById("date");
+const timeSelect = document.getElementById("time");
+const confirmationMessage = document.getElementById("confirmationMessage");
+const appointmentNumberSpan = document.getElementById("appointmentNumber");
+
+// Enable doctor select when specialty selected, populate doctors
+specialtySelect.addEventListener("change", () => {
+  const specialty = specialtySelect.value;
+  doctorSelect.innerHTML = '<option value="">Choose a doctor</option>';
+
+  if (specialty && doctorsBySpecialty[specialty]) {
+    doctorsBySpecialty[specialty].forEach((doc) => {
+      const option = document.createElement("option");
+      option.value = doc;
+      option.textContent = doc;
+      doctorSelect.appendChild(option);
+    });
+    doctorSelect.disabled = false;
+  } else {
+    doctorSelect.disabled = true;
+  }
+
+  // Reset dependent fields
+  timeSelect.innerHTML = '<option value="">Choose a time</option>';
+  timeSelect.disabled = true;
+  dateInput.value = "";
+});
+
+// Example time slots
+const availableTimes = [
+  "08:00",
+  "08:30",
+  "09:00",
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "13:00",
+  "13:30",
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+];
+
+// Enable time select when date and doctor are selected
+dateInput.addEventListener("change", updateAvailableTimes);
+doctorSelect.addEventListener("change", updateAvailableTimes);
+
+function updateAvailableTimes() {
+  const date = dateInput.value;
+  const doctor = doctorSelect.value;
+
+  timeSelect.innerHTML = '<option value="">Choose a time</option>';
+
+  if (date && doctor) {
+    // Here you would normally filter out booked times for the doctor on that date
+    // For now, show all available times
+
+    availableTimes.forEach((time) => {
+      const option = document.createElement("option");
+      option.value = time;
+      option.textContent = time;
+      timeSelect.appendChild(option);
+    });
+
+    timeSelect.disabled = false;
+  } else {
+    timeSelect.disabled = true;
+  }
+}
+</script> 
+<script src="script.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+  <script>
+const options = {
+  bottom: '32px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+</script>
+</body> </html> 

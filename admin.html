@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Panel</title>
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 32px;
+	background-color: #f9fafd;
+	color: #333;
+}
+
+h1 {
+	text-align: center;
+	color: #2c3e50;
+	margin-bottom: 40px;
+	letter-spacing: 1px;
+}
+
+.container {
+	display: flex;
+	gap: 24px;
+}
+
+.panel {
+	flex: 1;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.panel h2 {
+	margin-top: 0;
+	margin-bottom: 16px;
+	color: #34495e;
+	border-bottom: 2px solid #2980b9;
+	padding-bottom: 6px;
+}
+
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 8px;
+}
+
+th, td {
+	padding: 12px 16px;
+	text-align: left;
+	font-size: 1rem;
+}
+
+thead th {
+	background-color: #2980b9;
+	color: #fff;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	border-radius: 4px 4px 0 0;
+}
+
+tbody tr {
+	background-color: #ecf0f1;
+	transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+	background-color: #d6eaf8;
+}
+
+tbody td {
+	border-top: 1px solid #ddd;
+}
+
+tbody tr td[colspan] {
+	text-align: center;
+	font-style: italic;
+	color: #7f8c8d;
+}
+
+.home-btn {
+	display: inline-block;
+	position: absolute;
+	left: 32px;
+	top: 32px;
+	margin: 0;
+	padding: 10px 28px;
+	background: #2980b9;
+	color: #fff;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	transition: 0.2s;
+	box-shadow: 0 2px 8px rgba(41,128,185,0.08);
+	z-index: 10;
+}
+
+.home-btn:hover {
+	background: hsl(205, 67%, 33%);
+}
+
+@media (max-width: 900px) {
+	.container {
+		flex-direction: column;
+	}
+
+	.panel {
+		margin-bottom: 24px;
+	}
+}
+
+@media (max-width: 600px) {
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	thead tr {
+		display: none;
+	}
+
+	tbody tr {
+		margin-bottom: 20px;
+		background: #fff;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+		border-radius: 8px;
+		padding: 12px 16px;
+	}
+
+	tbody td {
+		border: none;
+		padding-left: 50%;
+		position: relative;
+		text-align: right;
+		font-size: 0.95rem;
+	}
+
+	tbody td::before {
+		position: absolute;
+		left: 16px;
+		width: 45%;
+		white-space: nowrap;
+		font-weight: 600;
+		text-align: left;
+		color: #2980b9;
+	}
+    
+ 
+	#contactsTable tbody td:nth-child(1)::before {
+		content: "Name";
+	}
+
+	#contactsTable tbody td:nth-child(2)::before {
+		content: "Email";
+	}
+
+	#contactsTable tbody td:nth-child(3)::before {
+		content: "Message";
+	}
+
+	#appointmentsTable tbody td:nth-child(1)::before {
+		content: "Name";
+	}
+
+	#appointmentsTable tbody td:nth-child(2)::before {
+		content: "PESEL";
+	}
+
+	#appointmentsTable tbody td:nth-child(3)::before {
+		content: "Specialty";
+	}
+
+	#appointmentsTable tbody td:nth-child(4)::before {
+		content: "Doctor";
+	}
+
+	#appointmentsTable tbody td:nth-child(5)::before {
+		content: "Date";
+	}
+
+	#appointmentsTable tbody td:nth-child(6)::before {
+		content: "Time";
+	}
+}
+</style>
+</head>
+<body>
+    
+      <div id="loginModal" style="display:none;position:fixed;z-index:1000;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.98);align-items:center;justify-content:center;">
+    <form id="loginForm" style="background:#fff;padding:32px 28px 24px 28px;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.10);min-width:320px;">
+      <h2 style="margin-top:0;text-align:center;color:#2980b9;">Admin Login</h2>
+      <div style="margin-bottom:16px;">
+        <label>Username</label>
+          <a href="index.html" class="home-btn">Home</a>
+        <input type="text" id="adminUser" required style="width:100%;padding:8px;margin-top:4px;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label>Password</label>
+        <input type="password" id="adminPass" required style="width:100%;padding:8px;margin-top:4px;">
+      </div>
+      <button type="submit" style="width:100%;padding:10px;background:#2980b9;color:#fff;border:none;border-radius:5px;font-weight:600;font-size:1rem;">Login</button>
+      <div id="loginError" style="color:#c0392b;text-align:center;margin-top:12px;display:none;">Invalid Credentials</div>
+    </form>
+  </div>
+  
+  <h1>Admin Panel</h1>
+  <button id="logoutBtn" style="display:none;position:absolute;top:32px;right:32px;z-index:1001;padding:10px 24px;background:#c0392b;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;">Logout</button>
+   <a href="index.html" class="home-btn">Home</a>
+  <div class="container">
+    <section class="panel">
+      <h2>Contact Messages</h2>
+      <table id="contactsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="3">Loading...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>Appointments</h2>
+      <table id="appointmentsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>PESEL</th>
+            <th>Specialty</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="6">Loading...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+window.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem("adminLoggedIn") === "true") {
+    document.getElementById('loginModal').style.display = "none";
+    document.getElementById('logoutBtn').style.display = "block"; 
+  } else {
+    document.getElementById('loginModal').style.display = "flex";
+    document.getElementById('logoutBtn').style.display = "none";
+  }
+});
+
+// Login form submission
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const user = document.getElementById('adminUser').value.trim();
+  const pass = document.getElementById('adminPass').value;
+  if (user === "admin" && pass === "admin123") {
+    localStorage.setItem("adminLoggedIn", "true");
+    document.getElementById('loginModal').style.display = "none";
+    document.getElementById('loginError').style.display = "none";
+    document.getElementById('logoutBtn').style.display = "block"; 
+  } else {
+    document.getElementById('loginError').style.display = "block";
+  }
+});
+    
+    // Fetch contact messages
+    fetch('http://localhost:3000/api/contacts')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#contactsTable tbody");
+        tbody.innerHTML = "";
+        if (data.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='3'>No records found.</td></tr>";
+        } else {
+data.forEach(c => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td data-label="Name">${c.name || ""}</td>
+    <td data-label="Email">${c.email || ""}</td>
+    <td data-label="Message">${c.message || ""}</td>
+    <td>
+      ${c.id ? `<button class="delete-contact-btn" data-id="${c.id}">Delete</button>` : ""}
+    </td>
+  `;
+  tbody.appendChild(tr);
+});
+        }
+      })
+      .catch(() => {
+        document.querySelector("#contactsTable tbody").innerHTML = "<tr><td colspan='3'>Failed to load data.</td></tr>";
+      });
+
+    // Fetch appointments
+    fetch('http://localhost:3000/api/appointments')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#appointmentsTable tbody");
+        tbody.innerHTML = "";
+        if (data.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='6'>No records found.</td></tr>";
+        } else {
+          data.forEach(a => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td data-label="ID">${a.id || ""}</td>
+              <td data-label="Name">${a.patientName || ""}</td>
+              <td data-label="PESEL">${a.pesel || ""}</td>
+            <td data-label="Specialty">${(a.specialty || "").replace(/_/g, ' ')}</td>
+              <td data-label="Doctor">${a.doctor || ""}</td>
+              <td data-label="Date">${a.date || ""}</td>
+              <td data-label="Time">${a.time || ""}</td>
+                  <td>
+            <button class="edit-btn" data-id="${a.id}">Edit</button>
+            <button class="delete-btn" data-id="${a.id}">Delete</button>
+                 </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+      })
+      .catch(() => {
+        document.querySelector("#appointmentsTable tbody").innerHTML = "<tr><td colspan='6'>Failed to load data.</td></tr>";
+      });
+
+   document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const user = document.getElementById('adminUser').value.trim();
+  const pass = document.getElementById('adminPass').value;
+  if (user === "admin" && pass === "admin123") {
+    localStorage.setItem("adminLoggedIn", "true");
+    document.getElementById('loginModal').style.display = "none";
+    document.getElementById('loginError').style.display = "none";
+  } else {
+    document.getElementById('loginError').style.display = "block";
+  }
+});
+
+   document.addEventListener('click', function(e) {
+
+  if (e.target.classList.contains('edit-btn')) {
+    const btn = e.target;
+    const tr = btn.closest('tr');
+    if (!tr) return;
+    if (tr.classList.contains('editing')) return;
+    tr.classList.add('editing');
+
+
+    const tds = tr.querySelectorAll('td');
+    const original = Array.from(tds).map(td => td.innerText);
+
+    const fields = ['patientName', 'pesel', 'specialty', 'doctor', 'date', 'time'];
+    const id = btn.dataset.id;
+
+    for (let i = 1; i <= 6; i++) {
+      const val = tds[i].innerText;
+      tds[i].innerHTML = `<input type="text" value="${val}" style="width:95%;">`;
+    }
+
+    // Update Actions
+    tds[7].innerHTML = `
+      <button class="save-btn" data-id="${id}">Save</button>
+      <button class="cancel-btn">Cancel</button>
+    `;
+
+    // Cancel
+    tds[7].querySelector('.cancel-btn').onclick = function() {
+      tr.classList.remove('editing');
+      fields.forEach((_, i) => tds[i+1].innerText = original[i+1]);
+      tds[7].innerHTML = `
+        <button class="edit-btn" data-id="${id}">Edit</button>
+        <button class="delete-btn" data-id="${id}">Delete</button>
+      `;
+    };
+
+    // Save
+    tds[7].querySelector('.save-btn').onclick = function() {
+      const updated = {};
+      fields.forEach((field, i) => {
+        updated[field] = tds[i+1].querySelector('input').value.trim();
+      });
+      updated.id = id;
+
+      fetch(`http://localhost:3000/api/appointments/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+      })
+      .then(res => {
+        if (res.ok) {
+          location.reload();
+        } else {
+          alert("Güncelleme başarısız!");
+        }
+      });
+    };
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', function() {
+  localStorage.removeItem("adminLoggedIn");
+  location.reload();
+});
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete-btn')) {
+    const id = e.target.dataset.id;
+    if (confirm("Are you sure you want to delete this appointment?")) {
+      fetch(`http://localhost:3000/api/appointments/${id}`, {
+        method: "DELETE"
+      })
+      .then(res => {
+        if (res.ok) {
+          location.reload();
+        } else {
+          alert("Deleteion failed!");
+        }
+      });
+    }
+  }
+});
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete-contact-btn')) {
+    const id = e.target.dataset.id;
+    if (confirm("Are you sure you want to delete this message?")) {
+      fetch(`http://localhost:3000/api/contacts/${id}`, {
+        method: "DELETE"
+      })
+      .then(res => {
+        if (res.ok) {
+          location.reload();
+        } else {
+          alert("Delete failed!");
+        }
+      });
+    }
+  }
+});
+  </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+  <script>
+const options = {
+  bottom: '32px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+</script>
+</body>
+</html>
